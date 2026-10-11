@@ -23,7 +23,12 @@ for p in skill.rglob('*.md'):
         raise SystemExit('Personal path or unfinished scaffold: '+str(p))
 for p in skill.rglob('*.py'):
     compile(p.read_text(encoding='utf-8'), str(p), 'exec')
-for p in (root/'dist').glob('workbuddy-short-video-0.1.0*.zip'):
+version = fields['version']
+expected = [f'workbuddy-short-video-{version}.zip', f'workbuddy-short-video-{version}-folder.zip',
+            f'workbuddy-short-video-beginner-{version}.zip', f'workbuddy-short-video-kit-source-{version}.zip']
+for name in expected:
+    if not (root/'dist'/name).is_file(): raise SystemExit('Missing package: '+name)
+for p in (root/'dist').glob(f'workbuddy-short-video-{version}*.zip'):
     with zipfile.ZipFile(p) as z:
         names = z.namelist()
         entry = 'workbuddy-short-video/SKILL.md' if '-folder' in p.stem else 'SKILL.md'
