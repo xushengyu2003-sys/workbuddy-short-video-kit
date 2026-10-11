@@ -25,7 +25,7 @@ with zipfile.ZipFile(beginner, 'w', zipfile.ZIP_DEFLATED) as z:
     z.write(dist/name, name)
     z.write(root/'三步安装说明.txt', '先读我-三步安装说明.txt')
     z.write(root/'开始剪辑-复制这句话.txt', '开始剪辑-复制这句话.txt')
-    z.write(root/'docs/index.html', '领取与安装.html')
+    z.write(root/'index.html', '领取与安装.html')
     z.write(root/'LICENSE', 'LICENSE')
 checks = []
 for p in sorted(dist.glob('*.zip')):

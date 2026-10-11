@@ -51,4 +51,4 @@ python3 build_release.py
 
 [开源方法比较](UPGRADE-RESEARCH.md)、[实测范围](VALIDATION.md)、[速度与限制](SPEED-NOTES.md)。本包是独立实现，没有将 WhisperX、stable-ts 或第三方 Studio 打包进去。机器解码不能证明字幕准确或听感自然。
 
-本次发布版本为0.2.2；面向小白的领取页在 docs/index.html，页面内嵌安装包，下载不需要读取GitHub源码。分享仅包含技能、说明和测试，不包含真人素材、字幕、成片、音乐、字体、模型或密钥。
+本次发布版本为0.2.2；面向小白的领取页在 index.html，页面内嵌安装包，下载不需要读取GitHub源码。分享仅包含技能、说明和测试，不包含真人素材、字幕、成片、音乐、字体、模型或密钥。
