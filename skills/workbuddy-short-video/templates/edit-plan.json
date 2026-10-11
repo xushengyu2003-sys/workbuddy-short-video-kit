@@ -4,8 +4,17 @@
   "height": 1920,
   "fps": 30,
   "fit": "contain",
-  "clips": [{"source": "input.mp4", "start": 0, "end": 10}],
+  "clips": [
+    {
+      "source": "input.mp4",
+      "start": 0,
+      "end": 10
+    }
+  ],
   "subtitles": "source.srt",
   "subtitle_timing": "source",
-  "burn_subtitles": true
+  "burn_subtitles": true,
+  "subtitle_style": {
+    "preset": "readable"
+  }
 }

@@ -1,0 +1,23 @@
+{
+  "source": null,
+  "selection_source": "user",
+  "selected": {
+    "edit_mode": "tight",
+    "target_seconds": null,
+    "output_count": 1,
+    "aspect": "original",
+    "fit": "contain",
+    "captions": "readable",
+    "font_size": null,
+    "music": null,
+    "subtitle_only": false,
+    "broll": false,
+    "mg_titles": false
+  },
+  "deferred": [
+    "image_narration",
+    "online_tts"
+  ],
+  "notes": [],
+  "runtime_python": null
+}
