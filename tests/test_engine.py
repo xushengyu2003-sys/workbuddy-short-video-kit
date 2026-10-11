@@ -99,6 +99,19 @@ class RenderTests(unittest.TestCase):
         self.assertAlmostEqual(video.srt_read(out/'subtitles.srt')[1]['start'], 1.0)
         self.assertEqual(len(list((out/'review').glob('*.jpg'))), 3)
         with self.assertRaises(ValueError): video.render(p, out)
+        revised=self.base/'revised.srt'
+        video.srt_write(revised,[{'start':0.2,'end':1.6,'text':'新的完整字幕'}])
+        second=self.base/'restyled'
+        updated=video.restyle(out,revised,second,preset='accent')
+        self.assertTrue(updated['quality']['machine_pass'])
+        self.assertTrue(updated['timings']['reused_base'])
+        self.assertEqual((out/'base.mp4').read_bytes(),(second/'base.mp4').read_bytes())
+        # The new output must actually show new pixels, beyond simply copying a cache receipt.
+        self.assertNotEqual((out/'review/frame-1.jpg').read_bytes(),(second/'review/frame-1.jpg').read_bytes())
+        before=video.read_json(out/'edit-plan.json');before['music_gain']=0.2
+        video.write_json(out/'edit-plan.json',before)
+        with self.assertRaises(ValueError): video.restyle(out,revised,self.base/'invalid-cache')
+        self.assertFalse((self.base/'invalid-cache').exists())
 
     def test_mixed_image_video_with_music(self):
         from PIL import Image
