@@ -1,0 +1,13 @@
+使用 workbuddy-short-video-windows 技能，先完成 Windows 测试，再剪我提供的口播。
+
+先读取技能的 references/setup.md，找到本机实际技能目录。第一步运行 scripts/check-windows.ps1 -ReportDir <新的报告目录> -RequireTranscription；即使没有 Python 也要先生成 bootstrap.json。找到 Python 后还要生成 environment.json，检查 FFmpeg、ffprobe、可用的 H.264/AAC 编码、Pillow、中文字体、faster-whisper 和本地转录模型。缺项时逐项告诉我：缺什么、去哪个页面下载、怎么安装或设置路径；我安装后用新目录复检。只有 ready=true 才开始剪辑。使用同一个 Python 解释器执行后续任务；不要执行 Mac 命令，不改变其他技能环境。
+
+环境通过后执行 scripts/selftest.py，输出到新的 selftest-v1 目录，交付 doctor.json、selftest.json 和 tests.txt。依赖缺失或测试失败要保留具体错误，不能宣称通过。
+
+合成测试通过后，把我提供的口播剪紧凑，保留完整核心观点，删多余停顿、重复与改口，加可读中文字幕，按原比例输出。先全文阅读和校对字幕，再做短样片，最后导出 MP4。Windows 使用 libx264；不要覆盖原片。只有 SRT、没有可靠词级转录时，不伪造词级剪辑。首次转录模型下载先告诉我并征得同意。
+
+再修改一次字幕样式，用 restyle 验证底片复用。交付 final.mp4、SRT、剪辑理由、质量报告及字幕新版；标明哪些已机器检查、哪些已看画面、哪些切口待我试听。
+
+最后给测试报告：Windows/WorkBuddy 版本、环境路径与版本、模型、合成测试通过/失败数、原片和成片时长、输出路径、遇到的错误及处理。无法取得的数据记未知，不编造；原素材不改动。
+
+请特别记录这台电脑已有环境是否可复用；若 pip 或模型下载不顺，参考 references/setup.md 的一次性镜像方案，说明来源，并只对本次下载生效。准备模型后重新检测，不把“包装好”当作“模型可用”。
